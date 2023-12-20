@@ -1,29 +1,28 @@
 package com.skymilk.news
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.lifecycleScope
-import com.skymilk.news.domain.usecases.AppEntryUseCases
-import com.skymilk.news.presentation.onBoarding.OnBoardingScreen
-import com.skymilk.news.presentation.onBoarding.OnBoardingViewModel
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.skymilk.news.presentation.nvgraph.NavGraph
 import com.skymilk.news.ui.theme.NewsTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var appEntryUseCases: AppEntryUseCases
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,24 +31,28 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         //로딩 화면 출력
-        installSplashScreen()
-
-        //실행 여부 확인
-        lifecycleScope.launch {
-            appEntryUseCases.readAppEntry().collect {
-                println("appEntry : $it")
-            }
+        installSplashScreen().apply {
+            setKeepOnScreenCondition { viewModel.splashCondition.value }
         }
 
         setContent {
             NewsTheme {
-                Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background))
 
-                val viewModel: OnBoardingViewModel = hiltViewModel()
+                val isDarkMode = isSystemInDarkTheme()
+                val systemController = rememberSystemUiController()
 
-                OnBoardingScreen(
-                    event = viewModel::onEvent
-                )
+                //외부 앱 상태 설정
+                SideEffect {
+                    systemController.setSystemBarsColor(
+                        color = Color.Transparent,
+                        darkIcons = !isDarkMode // 다크모드일 땐 다크 아이콘을 사용하지 않는다
+                    )
+                }
+
+                Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)) {
+                    val startDestination = viewModel.startDestination
+                    NavGraph(startDestination = startDestination)
+                }
             }
         }
     }

@@ -3,12 +3,5 @@
 
     <style name="Theme.News" parent="android:Theme.Material.Light.NoActionBar">
 
-        <!--        상단바 반투명-->
-        <item name="android:windowTranslucentStatus">true</item>
-
-
-        <!--        네비게이션 반투명-->
-        <item name="android:windowTranslucentNavigation">true</item>
-
     </style>
 </resources>

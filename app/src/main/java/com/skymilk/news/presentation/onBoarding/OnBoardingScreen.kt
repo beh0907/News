@@ -18,17 +18,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.lifecycle.lifecycleScope
-import com.skymilk.news.domain.usecases.AppEntryUseCases
-import com.skymilk.news.presentation.Dimens.mediumPaddingText
-import com.skymilk.news.presentation.Dimens.pageIndicatorSize
+import com.skymilk.news.presentation.Dimens.MediumPaddingText
+import com.skymilk.news.presentation.Dimens.PageIndicatorSize
 import com.skymilk.news.presentation.common.NewsButton
 import com.skymilk.news.presentation.common.NewsTextButton
 import com.skymilk.news.presentation.onBoarding.components.OnBoardingPage
 import com.skymilk.news.presentation.onBoarding.components.PageIndicator
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -64,13 +60,13 @@ fun OnBoardingScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = mediumPaddingText)
+                .padding(horizontal = MediumPaddingText)
                 .navigationBarsPadding(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             PageIndicator(
-                modifier = Modifier.width(pageIndicatorSize),
+                modifier = Modifier.width(PageIndicatorSize),
                 pageSize = pages.size,
                 selectedPage = pagerState.currentPage
             )

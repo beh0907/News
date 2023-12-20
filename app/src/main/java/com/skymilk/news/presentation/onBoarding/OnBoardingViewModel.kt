@@ -2,7 +2,7 @@ package com.skymilk.news.presentation.onBoarding
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.skymilk.news.domain.usecases.AppEntryUseCases
+import com.skymilk.news.domain.usecases.appEntry.AppEntryUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

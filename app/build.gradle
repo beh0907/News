@@ -10,6 +10,7 @@ android {
     namespace 'com.skymilk.news'
     compileSdk 34
 
+
     defaultConfig {
         applicationId "com.skymilk.news"
         minSdk 24
@@ -21,6 +22,10 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        def localProperties = new Properties()
+        localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+        buildConfigField("String", "NEWS_API_KEY", localProperties['news.api.key'])
     }
 
     buildTypes {
@@ -38,6 +43,7 @@ android {
     }
     buildFeatures {
         compose true
+        buildConfig true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.7"

@@ -1,4 +1,4 @@
-package com.skymilk.news.domain.usecases
+package com.skymilk.news.domain.usecases.appEntry
 
 data class AppEntryUseCases(
     val readAppEntry: ReadAppEntry,

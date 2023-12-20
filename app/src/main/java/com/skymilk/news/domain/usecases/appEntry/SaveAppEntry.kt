@@ -1,4 +1,4 @@
-package com.skymilk.news.domain.usecases
+package com.skymilk.news.domain.usecases.appEntry
 
 import com.skymilk.news.domain.manager.LocalUserManager
 
