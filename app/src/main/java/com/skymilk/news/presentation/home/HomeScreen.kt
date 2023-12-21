@@ -76,6 +76,7 @@ fun HomeScreen(
 
             },
             onClick = {
+                //메인화면에서 검색바를 터치하면 검색 화면으로 이동시킨다
                 navigate(Route.SearchScreen.route)
             },
             onSearch = {
@@ -105,6 +106,7 @@ fun HomeScreen(
             articles = articles,
             onclick = {
                 navigate(Route.DetailsScreen.route)
-            })
+            }
+        )
     }
 }

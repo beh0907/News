@@ -1,5 +1,9 @@
 package com.skymilk.news.domain.usecases.news
 
 data class NewsUseCases(
-    val getNews: GetNews
+    val getNews: GetNews,
+    val searchNews: SearchNews,
+    val getArticles: GetArticles,
+    val upsertArticle: UpsertArticle,
+    val deleteArticle: DeleteArticle,
 )

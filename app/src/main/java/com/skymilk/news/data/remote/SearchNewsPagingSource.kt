@@ -5,7 +5,8 @@ import androidx.paging.PagingState
 import com.skymilk.news.domain.model.Article
 
 //페이징 처리 리소스
-class NewsPagingSource(
+class SearchNewsPagingSource(
+    private val searchQuery: String,
     private val newsApi: NewsApi,
     private val sources: String
 ) : PagingSource<Int, Article>() {
@@ -16,7 +17,8 @@ class NewsPagingSource(
         val page = params.key ?: 1
 
         return try {
-            val newsResponse = newsApi.getNews(page = page, sources = sources)
+            val newsResponse =
+                newsApi.searchNews(searchQuery = searchQuery, page = page, sources = sources)
             totalNewsCount += newsResponse.articles.size
 
             // 타이틀 기준 중복 제거

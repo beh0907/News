@@ -44,10 +44,10 @@ fun ArticleCard(
 ) {
     val context = LocalContext.current
 
-    Row(modifier = Modifier.clickable { onClick() }) {
+    Row(modifier = modifier.clickable { onClick() }) {
 
         AsyncImage(
-            modifier = Modifier
+            modifier = modifier
                 .size(ArticleCardImageSize)
                 .clip(MaterialTheme.shapes.medium), // 테두리 둥글게
             model = ImageRequest.Builder(context).data(article.urlToImage).build(), // 이미지 불러오기
@@ -57,7 +57,7 @@ fun ArticleCard(
 
         Column(
             verticalArrangement = Arrangement.SpaceAround,
-            modifier = Modifier
+            modifier = modifier
                 .padding(horizontal = ExtraSmallPadding)
                 .height(ArticleCardImageSize)
         ) {
@@ -80,15 +80,15 @@ fun ArticleCard(
                     )
                 )
 
-                Spacer(modifier = Modifier.width(SmallPadding))
+                Spacer(modifier = modifier.width(SmallPadding))
 
                 Icon(
                     painter = painterResource(id = R.drawable.ic_time), contentDescription = null,
-                    modifier = Modifier.size(SmallIconSize),
+                    modifier = modifier.size(SmallIconSize),
                     tint = colorResource(id = R.color.body)
                 )
 
-                Spacer(modifier = Modifier.width(SmallPadding))
+                Spacer(modifier = modifier.width(SmallPadding))
 
                 Text(
                     text = article.publishedAt,

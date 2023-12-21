@@ -24,7 +24,7 @@ fun ArticlesList(
     val handlePagingResult = handlePagingResult(articles = articles)
     if (handlePagingResult) {
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(MediumPaddingSpacer),
             contentPadding = PaddingValues(all = SmallPadding)
         ) {
@@ -33,6 +33,25 @@ fun ArticlesList(
                     ArticleCard(article = it, onClick = { onclick(it) }) // 아이템 설정
                 }
             }
+        }
+    }
+}
+
+//즐겨찾는 뉴스 기사 목록 뷰
+@Composable
+fun ArticlesList(
+    modifier: Modifier = Modifier,
+    articles: List<Article>,
+    onclick: (Article) -> Unit
+) {
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(MediumPaddingSpacer),
+        contentPadding = PaddingValues(all = SmallPadding)
+    ) {
+        items(count = articles.size) {
+            val article = articles[it]
+            ArticleCard(article = article, onClick = { onclick(article) }) // 아이템 설정
         }
     }
 }

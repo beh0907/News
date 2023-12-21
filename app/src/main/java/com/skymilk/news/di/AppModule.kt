@@ -1,6 +1,10 @@
 package com.skymilk.news.di
 
 import android.app.Application
+import androidx.room.Room
+import com.skymilk.news.data.local.NewsDao
+import com.skymilk.news.data.local.NewsDatabase
+import com.skymilk.news.data.local.NewsTypeConvertor
 import com.skymilk.news.data.manager.LocalUserManagerImpl
 import com.skymilk.news.data.remote.NewsApi
 import com.skymilk.news.data.repository.NewsRepositoryImpl
@@ -9,9 +13,14 @@ import com.skymilk.news.domain.repository.NewsRepository
 import com.skymilk.news.domain.usecases.appEntry.AppEntryUseCases
 import com.skymilk.news.domain.usecases.appEntry.ReadAppEntry
 import com.skymilk.news.domain.usecases.appEntry.SaveAppEntry
+import com.skymilk.news.domain.usecases.news.DeleteArticle
+import com.skymilk.news.domain.usecases.news.GetArticles
 import com.skymilk.news.domain.usecases.news.GetNews
 import com.skymilk.news.domain.usecases.news.NewsUseCases
+import com.skymilk.news.domain.usecases.news.SearchNews
+import com.skymilk.news.domain.usecases.news.UpsertArticle
 import com.skymilk.news.util.Constants
+import com.skymilk.news.util.Constants.NEWS_DB_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -61,9 +70,40 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsUseCases(
-        newsRepository: NewsRepository
+        newsRepository: NewsRepository,
+        newsDao: NewsDao
     ) = NewsUseCases(
-        GetNews(newsRepository)
+        GetNews(newsRepository),
+        SearchNews(newsRepository),
+        GetArticles(newsDao),
+        UpsertArticle(newsDao),
+        DeleteArticle(newsDao)
     )
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    //Room Database 의존성 주입
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Provides
+    @Singleton
+    fun provideNewsDatabase(
+        application: Application
+    ): NewsDatabase {
+        return Room.databaseBuilder(
+            application,
+            NewsDatabase::class.java,
+            NEWS_DB_NAME
+        )
+            .addTypeConverter(NewsTypeConvertor())
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsDao(
+        newsDatabase: NewsDatabase
+    ): NewsDao = newsDatabase.newsDao
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
 }
