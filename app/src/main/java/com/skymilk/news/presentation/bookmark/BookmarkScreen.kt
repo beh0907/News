@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import com.skymilk.news.R
+import com.skymilk.news.domain.model.Article
 import com.skymilk.news.presentation.Dimens.MediumPaddingSpacer
 import com.skymilk.news.presentation.common.ArticlesList
 import com.skymilk.news.presentation.nvgraph.Route
@@ -20,7 +21,7 @@ import com.skymilk.news.presentation.nvgraph.Route
 @Composable
 fun BookmarkScreen(
     state: BookmarkState,
-    navigate: (String) -> Unit
+    navigateToDetails: (Article) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -33,7 +34,7 @@ fun BookmarkScreen(
             .statusBarsPadding()
     ) {
         Text(
-            text = "즐겨찾기",
+            text = "북마크",
             style = MaterialTheme.typography.displayMedium.copy(
                 fontWeight = FontWeight.Bold,
                 color = colorResource(id = R.color.text_title)
@@ -43,7 +44,7 @@ fun BookmarkScreen(
         //공백 mediumPaddingSpacer(24dp)
         Spacer(modifier = Modifier.height(MediumPaddingSpacer))
 
-        ArticlesList(articles = state.articles, onclick = {navigate(Route.DetailsScreen.route)})
+        ArticlesList(articles = state.articles, onclick = {navigateToDetails(it)})
     }
 
 

@@ -26,8 +26,6 @@ class SearchViewModel @Inject constructor(
             is SearchEvent.SearchNews -> {
                 searchNews()
             }
-
-            else -> Unit
         }
     }
 

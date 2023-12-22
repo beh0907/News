@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.skymilk.news.domain.model.Article
 import com.skymilk.news.presentation.Dimens.MediumPaddingSpacer
 import com.skymilk.news.presentation.common.ArticlesList
 import com.skymilk.news.presentation.common.SearchBar
@@ -20,7 +21,7 @@ import kotlinx.coroutines.flow.collect
 fun SearchScreen(
     state: SearchState,
     event: (SearchEvent) -> Unit,
-    navigate: (String) -> Unit
+    navigateToDetails: (Article) -> Unit
 ) {
 
     Column(
@@ -48,10 +49,10 @@ fun SearchScreen(
         state.articles?.let {
             val articles = it.collectAsLazyPagingItems()
             ArticlesList(
-                modifier = Modifier.padding(horizontal = MediumPaddingSpacer),
+//                modifier = Modifier.padding(horizontal = MediumPaddingSpacer),
                 articles = articles,
                 onclick = {
-                    navigate(Route.DetailsScreen.route)
+                    navigateToDetails(it)
                 }
             )
         }

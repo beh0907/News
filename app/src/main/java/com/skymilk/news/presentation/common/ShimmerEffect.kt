@@ -52,7 +52,7 @@ fun ArticleCardShimmerEffect(
     Row(modifier = Modifier) {
 
         Box(
-            modifier = Modifier
+            modifier = modifier
                 .size(Dimens.ArticleCardImageSize)
                 .clip(MaterialTheme.shapes.medium) // 테두리 둥글게
                 .shimmerEffect()
@@ -60,12 +60,12 @@ fun ArticleCardShimmerEffect(
 
         Column(
             verticalArrangement = Arrangement.SpaceAround,
-            modifier = Modifier
+            modifier = modifier
                 .padding(horizontal = Dimens.ExtraSmallPadding)
                 .height(Dimens.ArticleCardImageSize)
         ) {
             Box(
-                modifier = Modifier
+                modifier = modifier
                     .fillMaxWidth()
                     .height(30.dp)
                     .padding(horizontal = MediumPaddingSpacer)
@@ -74,7 +74,7 @@ fun ArticleCardShimmerEffect(
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Box(
-                    modifier = Modifier
+                    modifier = modifier
                         .fillMaxWidth(0.5f)
                         .height(30.dp)
                         .padding(horizontal = MediumPaddingSpacer)

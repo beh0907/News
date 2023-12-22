@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.skymilk.news.domain.model.Article
 import javax.inject.Inject
 
-@Database(entities = [Article::class], version = 1, exportSchema = false)
+@Database(entities = [Article::class], version = 2)
 @TypeConverters(NewsTypeConvertor::class)
 abstract class NewsDatabase : RoomDatabase() {
 

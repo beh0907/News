@@ -2,6 +2,7 @@ package com.skymilk.news.presentation.home
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -34,7 +35,8 @@ import com.skymilk.news.presentation.nvgraph.Route
 @Composable
 fun HomeScreen(
     articles: LazyPagingItems<Article>,
-    navigate: (String) -> Unit
+    navigateToSearch: () -> Unit,
+    navigateToDetails: (Article) -> Unit
 ) {
     val titles by remember {
         derivedStateOf {
@@ -77,7 +79,7 @@ fun HomeScreen(
             },
             onClick = {
                 //메인화면에서 검색바를 터치하면 검색 화면으로 이동시킨다
-                navigate(Route.SearchScreen.route)
+                navigateToSearch()
             },
             onSearch = {
 
@@ -105,7 +107,7 @@ fun HomeScreen(
             modifier = Modifier.padding(horizontal = MediumPaddingSpacer),
             articles = articles,
             onclick = {
-                navigate(Route.DetailsScreen.route)
+                navigateToDetails(it)
             }
         )
     }

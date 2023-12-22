@@ -14,6 +14,7 @@ import com.skymilk.news.domain.usecases.appEntry.AppEntryUseCases
 import com.skymilk.news.domain.usecases.appEntry.ReadAppEntry
 import com.skymilk.news.domain.usecases.appEntry.SaveAppEntry
 import com.skymilk.news.domain.usecases.news.DeleteArticle
+import com.skymilk.news.domain.usecases.news.GetArticle
 import com.skymilk.news.domain.usecases.news.GetArticles
 import com.skymilk.news.domain.usecases.news.GetNews
 import com.skymilk.news.domain.usecases.news.NewsUseCases
@@ -64,20 +65,21 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsRepository(
-        newsApi: NewsApi
-    ): NewsRepository = NewsRepositoryImpl(newsApi)
+        newsApi: NewsApi,
+        newsDao: NewsDao
+    ): NewsRepository = NewsRepositoryImpl(newsApi, newsDao)
 
     @Provides
     @Singleton
     fun provideNewsUseCases(
-        newsRepository: NewsRepository,
-        newsDao: NewsDao
+        newsRepository: NewsRepository
     ) = NewsUseCases(
         GetNews(newsRepository),
         SearchNews(newsRepository),
-        GetArticles(newsDao),
-        UpsertArticle(newsDao),
-        DeleteArticle(newsDao)
+        GetArticle(newsRepository),
+        GetArticles(newsRepository),
+        UpsertArticle(newsRepository),
+        DeleteArticle(newsRepository)
     )
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,7 +1,11 @@
 package com.skymilk.news.presentation.details
 
+import com.skymilk.news.domain.model.Article
+
 sealed class DetailsEvent {
 
-    object SaveArticle : DetailsEvent()
+    data class UpsertDeleteArticle(val article: Article) : DetailsEvent()
+
+    object RemoveMessage : DetailsEvent()
 
 }

@@ -18,8 +18,6 @@ class OnBoardingViewModel @Inject constructor(
                 saveAppEntry()
 
             }
-
-            else -> Unit
         }
     }
 
