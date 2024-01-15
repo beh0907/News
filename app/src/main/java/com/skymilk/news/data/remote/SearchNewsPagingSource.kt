@@ -6,8 +6,8 @@ import com.skymilk.news.domain.model.Article
 
 //페이징 처리 리소스
 class SearchNewsPagingSource(
-    private val searchQuery: String,
     private val newsApi: NewsApi,
+    private val searchQuery: String,
     private val sources: String
 ) : PagingSource<Int, Article>() {
 

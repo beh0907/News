@@ -33,9 +33,9 @@ class NewsRepositoryImpl(
             config = PagingConfig(pageSize = 10),
             pagingSourceFactory = {
                 SearchNewsPagingSource(
-                    searchQuery,
-                    newsApi,
-                    sources.joinToString(separator = ",")
+                    newsApi = newsApi,
+                    searchQuery = searchQuery,
+                    sources = sources.joinToString(separator = ",")
                 )
             }
         ).flow

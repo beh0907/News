@@ -18,7 +18,7 @@ object Dimens {
     val SmallIconSize = 11.dp
     val IconSize = 20.dp
 
-    val SearchBarHorizontalPadding = 8.dp
+    val SearchBarHorizontalPadding = 16.dp
 
     val ArticleImageHeight = 248.dp
 }

@@ -29,8 +29,8 @@ fun ArticlesList(
             contentPadding = PaddingValues(all = SmallPadding)
         ) {
             items(count = articles.itemCount) {
-                articles[it]?.let {
-                    ArticleCard(article = it, onClick = { onclick(it) }) // 아이템 설정
+                articles[it]?.let { article ->
+                    ArticleCard(article = article, onClick = { onclick(article) }) // 아이템 설정
                 }
             }
         }
