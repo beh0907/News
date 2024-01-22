@@ -43,7 +43,7 @@ fun EmptyScreen(error: LoadState.Error? = null) {
     }
 
     if (error == null) {
-        message = "You have not saved news so far !"
+        message = "뉴스 기사를 찾을 수 없습니다."
         icon = R.drawable.ic_search_document
     }
 

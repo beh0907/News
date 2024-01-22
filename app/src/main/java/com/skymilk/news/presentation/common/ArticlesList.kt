@@ -44,6 +44,11 @@ fun ArticlesList(
     articles: List<Article>,
     onclick: (Article) -> Unit
 ) {
+    if (articles.isEmpty()) {
+        EmptyScreen()
+    }
+
+
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(MediumPaddingSpacer),
@@ -56,6 +61,7 @@ fun ArticlesList(
     }
 }
 
+//페이징 처리
 @Composable
 fun handlePagingResult(
     articles: LazyPagingItems<Article>
@@ -75,7 +81,14 @@ fun handlePagingResult(
         }
 
         error != null -> {
-            EmptyScreen() // 에러가 발생했다면 빈 화면
+            EmptyScreen(
+                error = error
+            ) // 에러가 발생했다면 빈 화면
+            false
+        }
+
+        articles.itemCount == 0 -> { // 페이징 기사가 없다면
+            EmptyScreen()
             false
         }
 
