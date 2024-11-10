@@ -1,4 +1,4 @@
-# <div align=center>ChatApp</div>
+# <div align=center>NewsApp</div>
 
 [News API](https://newsapi.org/)를 활용한 kotlin 언어 기반의 뉴스 기사 어플리케이션입니다.
 
