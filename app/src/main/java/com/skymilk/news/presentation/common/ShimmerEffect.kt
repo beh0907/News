@@ -1,5 +1,6 @@
 package com.skymilk.news.presentation.common
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -30,6 +31,7 @@ import com.skymilk.news.presentation.Dimens.MediumPaddingSpacer
 import com.skymilk.news.ui.theme.NewsTheme
 
 //리스트 로딩 중 애니메이션 효과
+@SuppressLint("ModifierFactoryUnreferencedReceiver")
 fun Modifier.shimmerEffect() = composed {
     val transition = rememberInfiniteTransition()
     val alpha = transition.animateFloat(
@@ -85,7 +87,6 @@ fun ArticleCardShimmerEffect(
     }
 }
 
-@Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun ArticleCardShimmerEffectPreview() {

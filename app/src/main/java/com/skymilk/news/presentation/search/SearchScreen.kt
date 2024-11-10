@@ -51,8 +51,8 @@ fun SearchScreen(
             ArticlesList(
 //                modifier = Modifier.padding(horizontal = MediumPaddingSpacer),
                 articles = articles,
-                onclick = {
-                    navigateToDetails(it)
+                onclick = { article ->
+                    navigateToDetails(article)
                 }
             )
         }

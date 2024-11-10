@@ -19,7 +19,7 @@ class MainViewModel @Inject constructor(
     private val appEntryUseCases: AppEntryUseCases
 ) : ViewModel() {
 
-    var splashCondition = mutableStateOf(true)
+    var splashCondition by mutableStateOf(true)
         private set
 
     //기본 시작 화면 온보딩 네비게이션
@@ -38,7 +38,7 @@ class MainViewModel @Inject constructor(
 
             //스플래시 화면 출력 시간
             delay(500)
-            splashCondition.value = false
+            splashCondition = false
         }.launchIn(viewModelScope) // viewModelScope 내에서 동작하도록 설정
     }
 }

@@ -64,18 +64,6 @@ fun HomeScreen(
             .padding(top = MediumPaddingSpacer)
             .statusBarsPadding()
     ) {
-        //앱 로고
-        Image(
-            painter = painterResource(id = R.drawable.ic_logo),
-            contentDescription = null,
-            modifier = Modifier
-                .width(150.dp)
-                .height(30.dp)
-                .padding(horizontal = MediumPaddingSpacer)
-        )
-
-        //공백
-        Spacer(modifier = Modifier.height(MediumPaddingSpacer))
 
         //검색 바
         SearchBar(

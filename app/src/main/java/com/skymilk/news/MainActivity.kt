@@ -13,24 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.lifecycleScope
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.skymilk.news.data.local.NewsDao
-import com.skymilk.news.domain.model.Article
-import com.skymilk.news.domain.model.Source
 import com.skymilk.news.presentation.nvgraph.NavGraph
 import com.skymilk.news.ui.theme.NewsTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val viewModel: MainViewModel by viewModels()
-
-    @Inject
-    lateinit var newsDao: NewsDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +31,7 @@ class MainActivity : ComponentActivity() {
 
         //로딩 화면 출력
         installSplashScreen().apply {
-            setKeepOnScreenCondition { viewModel.splashCondition.value }
+            setKeepOnScreenCondition { viewModel.splashCondition }
         }
 
         setContent {
