@@ -19,7 +19,7 @@
   * ViewModel - UI와 DATA 관련된 처리 로직을 분리합니다.
   * ViewBinding - View(Compose)와 코드(kotlin)간의 상호작용을 원활하게 처리합니다.
   * Paging3 - 무한 스크롤 목록을 처리하고 관리합니다. (API 페이징 처리)
-  * Navigation - [Compose Navigation](https://developer.android.com/develop/ui/compose/navigation?hl=ko)을 활용해 화면 전환시 Type-Safe한 인자를 전달하고 Notification과 연계하여 채팅방의 Deep Link를 구현합니다.
+  * Navigation - [Compose Navigation](https://developer.android.com/develop/ui/compose/navigation?hl=ko)을 활용해 화면간의 이동을 처리하고 데이터 전달을 관리합니다.
   * DataStore - SharedPreferences의 한계점을 개선한 라이브러리로 앱 최초 실행여부를 저장해 온보딩 화면 출력 여부를 관리합니다.
   * Room - 로컬 DB인 SQLite를 추상화한 라이브러리로 뉴스 북마크 목록을 관리합니다.
 * Architecture
